@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  haproxy:
+    image: haproxy:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    depends_on:
+      - nginx1
+      - nginx2
+
+  nginx1:
+    image: nginx:latest
+    ports:
+      - "8081:80"
+
+  nginx2:
+    image: nginx:latest
+    ports:
+      - "8082:80"
